@@ -1,0 +1,107 @@
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .box {
+            width: 300px;
+            height: 300px;
+            border: 1px solid black;
+            margin: 50px auto;
+            position: relative;
+            perspective: 600px;
+        }
+
+        .plane {
+            width: 300px;
+            height: 300px;
+            position: relative;
+            transition: 1s;
+            transform-style: preserve-3d
+        }
+        .face {
+            position: absolute;
+        }
+        .p-front {
+            width: 300px;
+            height: 300px;
+            background: orange;
+        }
+        .p-top, .p-bottom {
+            width: 300px;
+            height: 50px;
+            background: #ffc456;
+            left: 0;
+        }
+        .p-left, .p-right {
+            width: 50px;
+            height: 300px;
+            background: #9b7328;
+            top: 0;
+        }
+        .p-top {top: 0;  transform: rotateX(90deg) translateZ(25px);}
+        .p-bottom {bottom: 0; transform: rotateX(-90deg) translateZ(25px);}
+        .p-left {left: 0;  transform: rotateY(-90deg) translateZ(25px);}
+        .p-right {right: 0; transform: rotateY(90deg) translateZ(25px);}
+        .p-front {transform: translateZ(25px);}
+
+        .hover {
+            position: absolute;
+            top: 0;
+            bottom: 0;
+            right: 0;
+            left: 0;
+            z-index: 5;
+        }
+
+        .left {
+            clip-path: polygon(0% 0%, 0% 100%, 50% 50%);
+        }
+        .right {
+            clip-path: polygon(100% 0%, 100% 100%, 50% 50%);
+        }
+        .top {
+            clip-path: polygon(0% 0%, 100% 0%, 50% 50%);
+        }
+        .bottom {
+            clip-path: polygon(0% 100%, 100% 100%, 50% 50%);
+        }
+
+        .left:hover~div.plane {
+            transform: rotateY(45deg);
+        }
+
+        .right:hover~div.plane {
+            transform: rotateY(-45deg);
+        }
+        .top:hover~div.plane {
+            transform: rotateX(-45deg);
+        }
+        .bottom:hover~div.plane {
+            transform: rotateX(45deg);
+        }
+
+    </style>
+</head>
+
+<body>
+    <div class="box">
+        <div class="hover left"></div>
+        <div class="hover right"></div>
+        <div class="hover top"></div>
+        <div class="hover bottom"></div>
+        <div class="plane">
+            <div class="face p-front">F</div>
+            <div class="face p-left">L</div>
+            <div class="face p-right">R</div>
+            <div class="face p-top">T</div>
+            <div class="face p-bottom">B</div>
+        </div>
+    </div>
+</body>
+
+</html>
